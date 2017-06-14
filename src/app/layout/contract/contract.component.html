@@ -1,5 +1,47 @@
 <app-page-header [heading]="'Contract'" [icon]="'fa-edit'"></app-page-header>
 
-<p>
-  contract works!
-</p>
+<form #contractForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+        <label class="col-form-label col-md-3" for="contractId">
+            Contract Id
+        </label>
+        <div class="col-md-3">
+            <input [(ngModel)]="contract.id" type="textbox" name="id" class="form-control" [disabled]="mode=='ADD'">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-md-3" for="emplpyeeId">
+            Employee Id
+        </label>
+        <div class="col-md-3">
+            <input [(ngModel)]="contract.employeeId" type="textbox" name="employeeId" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-md-3" for="type">
+            Type
+        </label>
+        <div class="col-md-3">
+            <select [(ngModel)]="contract.type" name="type" class="form-control" required>
+                <option *ngFor="let item of contractTypes" [value]="item.key">{{item.value}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-md-3" for="validFrom">
+            Valid from
+        </label>
+        <div class="col-md-3">
+            <input [(ngModel)]="contract.validFrom" type="textbox" name="validFrom" value="" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-form-label col-md-3" for="validTo">
+            Valid to
+        </label>
+        <div class="col-md-3">
+            <input [(ngModel)]="contract.validTo" type="textbox" name="validTo" value="" class="form-control">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary offset-md-3" [disabled]="!contractForm.form.valid">Submit</button>
+</form>
