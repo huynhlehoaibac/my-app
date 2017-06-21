@@ -1,7 +1,7 @@
 export class Contract {
-    id: string;
-    employeeId: string;
-    type: string;
-    validFrom: string;
-    validTo: string;
+    id: Number;
+    employeeId: Number;
+    type: Number;
+    validFrom: String;
+    validTo: String;
 }

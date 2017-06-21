@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Contract } from './Contract';
 import { ContractType } from './ContractType';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-contract',
@@ -9,16 +10,13 @@ import { ContractType } from './ContractType';
 })
 export class ContractComponent implements OnInit {
 
-    @Input()
-    mode: string;
+    contractForm: FormGroup;
 
     contractTypes: Array<ContractType>;
 
-    contract: Contract;
+    constructor(private fb: FormBuilder) {
 
-    constructor() {
-
-        this.mode = 'ADD';
+        this.createForm();
 
         this.contractTypes = [
             {
@@ -42,14 +40,33 @@ export class ContractComponent implements OnInit {
                 value: 'Part-time contract'
             }
         ];
-
-        this.contract = new Contract();
     }
 
     ngOnInit() {
     }
 
+    createForm() {
+        this.contractForm = this.fb.group({
+            id: '',
+            type: ['', Validators.required],
+            employeeId: '',
+            validFrom: '',
+            validTo: ''
+        });
+    }
+
     onSubmit() {
-        alert(this.contract.type);
+
+        const formModel: any = this.contractForm.value;
+
+        const saveContract: Contract = {
+            id: null,
+            type: formModel.type as Number,
+            employeeId: formModel.employeeId as Number,
+            validFrom: formModel.validFrom as String,
+            validTo: formModel.validTo as String
+        };
+
+        alert(JSON.stringify(saveContract));
     }
 }

@@ -1,0 +1,25 @@
+{
+    "contractTypes": [
+        {
+            "id": 0,
+            "value": "Probationary contract"
+        },
+        {
+            "key": 1,
+            "value": "Fixed-term contract"
+        },
+        {
+            "key": 2,
+            "value": "Indefinite contract"
+        },
+        {
+            "key": 3,
+            "value": "Temporary contract"
+        },
+        {
+            "key": 4,
+            "value": "Part-time contract"
+        }
+    ],
+
+}
